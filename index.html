@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpaceShip - Revolutionizing Engineering Education</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <link rel="icon" href="https://asset.cloudinary.com/dihtx8nl3/8d423646cee02d8b4ca077c0788baf11 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <link rel="icon" href="https://asset.cloudinary.com/dihtx8nl3/8d423646cee02d8b4ca077c0788baf11">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
 
@@ -61,24 +61,24 @@
             margin: 0 auto;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
-        .image-placeholder {
-            background-color: rgba(42, 42, 42, 0.6);
-            height: 250px;
-            width: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .image-container {
             margin: 20px auto;
+        }
+        .image-container img {
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
-            font-weight: bold;
-            font-size: 1.5em;
-            color: #fff;
-            text-transform: uppercase;
+            object-fit: cover;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
         .highlight {
             color: #00ffff;
             font-weight: bold;
+        }
+        .hint {
+            font-style: italic;
+            color: #00ffff;
+            margin-top: 10px;
         }
         @media (max-width: 768px) {
             h1 {
@@ -117,8 +117,11 @@
 
         <div class="section" id="team">
             <h2>Our Team</h2>
-            <div class="image-placeholder">Adithya's Image</div>
+            <div class="image-container">
+                <img src="https://asset.cloudinary.com/dihtx8nl3/a5d50943a17ffd240c30b9dcb8396615" alt="Adithya's Image">
+            </div>
             <p>For now, it's just a one-person team. My name is Adithya, and this is what we are doing! I'm a passionate lifelong learner who understands the ecosystem through real-world experiences. This understanding drives our mission to bridge the gap between education and industry needs.</p>
+            <p class="hint">We are also looking for people to join our mission!</p>
         </div>
 
         <div class="section" id="problem">
