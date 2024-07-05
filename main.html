@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceShip Pitch - Animated Family Chat</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .chat-container {
+            max-width: 500px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            background-color: #075E54;
+            color: white;
+            padding: 10px;
+        }
+        .chat-header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .chat-header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #E5DDD5;
+        }
+        .message {
+            max-width: 80%;
+            margin-bottom: 10px;
+            clear: both;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .message p {
+            margin: 0;
+            padding: 8px 12px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+        .message .time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+            float: right;
+        }
+        .message.sent {
+            float: right;
+        }
+        .message.sent p {
+            background-color: #DCF8C6;
+        }
+        .message.received p {
+            background-color: white;
+        }
+        .message .sender {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #075E54;
+        }
+        #replayButton {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #075E54;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>SpaceShip Family Group</h1>
+            <p>You, Mom, Dad, Brother</p>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <button id="replayButton">Replay Animation</button>
+
+    <script>
+        const messages = [
+            { sender: 'You', content: "Hey family! 👋 Got some exciting news to share! 🎉", time: "10:00 AM" },
+            { sender: 'Mom', content: "What is it, beta? 😊", time: "10:01 AM" },
+            { sender: 'You', content: "I'm starting a new company called SpaceShip! 🚀", time: "10:02 AM" },
+            { sender: 'Dad', content: "Wow! Tell us more about it!", time: "10:02 AM" },
+            { sender: 'You', content: "So, you know how there are too many engineering grads but not enough jobs?", time: "10:03 AM" },
+            { sender: 'Brother', content: "Yeah, my friend is facing the same problem 😕", time: "10:04 AM" },
+            { sender: 'You', content: "Exactly! SpaceShip is here to fix that! We're gonna help make engineers job-ready! 💼🔧", time: "10:05 AM" },
+            { sender: 'Mom', content: "That's wonderful, beta! But how will you do it? 🤔", time: "10:06 AM" },
+            { sender: 'You', content: "We're creating a super cool platform where engineering students can learn practical skills that companies actually want! 💻📚", time: "10:07 AM" },
+            { sender: 'Dad', content: "Sounds interesting! Is there a big market for this?", time: "10:08 AM" },
+            { sender: 'You', content: "Oh yeah! Check this out:", time: "10:09 AM" },
+            { sender: 'You', content: "• 20 lakh engineering grads every year 🎓\n• Only about 16% can get IT service jobs 😱\n• Just 3% fit for IT product jobs 😳\n• But 39% could do well in other tech roles! 💡", time: "10:10 AM" },
+            { sender: 'Brother', content: "Whoa, that's a lot of students who need help!", time: "10:11 AM" },
+            { sender: 'You', content: "Right?! That's where SpaceShip comes in! We're gonna help bridge that gap! 🌉", time: "10:12 AM" },
+            { sender: 'Mom', content: "So proud of you, beta! How will students use SpaceShip?", time: "10:13 AM" },
+            { sender: 'You', content: "It's super simple! They pay to join our platform, and we give them all the tools and skills they need to become awesome engineers! 🛠️🚀", time: "10:14 AM" },
+            { sender: 'Dad', content: "Sounds like a solid plan! When do you start?", time: "10:15 AM" },
+            { sender: 'You', content: "We're just getting started! I'll keep you all updated. Thanks for the support, family! ❤️", time: "10:16 AM" },
+            { sender: 'Mom', content: "We're all rooting for you! Go SpaceShip! 🚀🌟", time: "10:17 AM" }
+        ];
+
+        function createMessageElement(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${message.sender === 'You' ? 'sent' : 'received'}`;
+            
+            let messageContent = '';
+            if (message.sender !== 'You') {
+                messageContent += `<div class="sender">${message.sender}</div>`;
+            }
+            messageContent += `<p>${message.content}</p><div class="time">${message.time}</div>`;
+            
+            messageDiv.innerHTML = messageContent;
+            return messageDiv;
+        }
+
+        function animateMessages(startIndex = 0) {
+            const chatMessages = document.getElementById('chatMessages');
+            if (startIndex === 0) {
+                chatMessages.innerHTML = '';
+            }
+            
+            function showNextMessage(index) {
+                if (index < messages.length) {
+                    const messageElement = createMessageElement(messages[index]);
+                    chatMessages.appendChild(messageElement);
+                    setTimeout(() => {
+                        messageElement.classList.add('show');
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                        showNextMessage(index + 1);
+                    }, 1000); // Delay between messages
+                } else {
+                    document.getElementById('replayButton').style.display = 'block';
+                }
+            }
+
+            showNextMessage(startIndex);
+        }
+
+        // Start animation when the page loads
+        window.onload = () => animateMessages();
+
+        // Replay button functionality
+        document.getElementById('replayButton').addEventListener('click', () => {
+            document.getElementById('replayButton').style.display = 'none';
+            animateMessages();
+        });
+    </script>
+</body>
+</html>
