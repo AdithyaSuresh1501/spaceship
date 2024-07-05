@@ -3,174 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpaceShip Pitch - Animated Family Chat</title>
+    <title>SpaceShip - Revolutionizing Engineering Education</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="icon" href="https://asset.cloudinary.com/dihtx8nl3/8d423646cee02d8b4ca077c0788baf11 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
+
         body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            height: 100%;
+            font-family: 'Lexend', sans-serif;
+            background-color: #0f0f1f;
+            color: #fff;
+            overflow: hidden;
+            line-height: 1.6;
         }
-        .chat-container {
-            max-width: 500px;
-            margin: 0 auto;
-            border: 1px solid #ddd;
-            height: 100%;
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+        .section {
+            height: 100vh;
+            scroll-snap-align: start;
             display: flex;
             flex-direction: column;
-        }
-        .chat-header {
-            background-color: #075E54;
-            color: white;
-            padding: 10px;
-        }
-        .chat-header h1 {
-            margin: 0;
-            font-size: 18px;
-        }
-        .chat-header p {
-            margin: 5px 0 0;
-            font-size: 14px;
-        }
-        .chat-messages {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 10px;
-            background-color: #E5DDD5;
-        }
-        .message {
-            max-width: 80%;
-            margin-bottom: 10px;
-            clear: both;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            box-sizing: border-box;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
+            transform: translateY(50px);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .message.show {
-            opacity: 1;
-            transform: translateY(0);
+        h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
-        .message p {
-            margin: 0;
-            padding: 8px 12px;
-            border-radius: 7px;
-            font-size: 14px;
+        h2 {
+            font-size: 2.5em;
+            color: #00ffff;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
-        .message .time {
-            font-size: 11px;
-            color: #999;
-            margin-top: 5px;
-            float: right;
+        p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
-        .message.sent {
-            float: right;
-        }
-        .message.sent p {
-            background-color: #DCF8C6;
-        }
-        .message.received p {
-            background-color: white;
-        }
-        .message .sender {
-            font-size: 12px;
+        .image-placeholder {
+            background-color: rgba(42, 42, 42, 0.6);
+            height: 250px;
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            border-radius: 50%;
             font-weight: bold;
-            margin-bottom: 4px;
-            color: #075E54;
+            font-size: 1.5em;
+            color: #fff;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
-        #replayButton {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            background-color: #075E54;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: none;
+        .highlight {
+            color: #00ffff;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h1>SpaceShip Family Group</h1>
-            <p>You, Mom, Dad, Brother</p>
+    <div class="container">
+        <div class="section" id="header">
+            <h1>SpaceShip</h1>
+            <p>Revolutionizing Engineering Education</p>
         </div>
-        <div class="chat-messages" id="chatMessages">
-            <!-- Messages will be inserted here by JavaScript -->
+
+        <div class="section" id="vision">
+            <h2>Our Vision</h2>
+            <p>At SpaceShip, our vision is to revolutionize engineering education and create a new generation of engineers who are not only technically proficient but also ready to tackle global challenges. We aim to bridge the gap between traditional education and the skills required in the modern workforce.</p>
+        </div>
+
+        <div class="section" id="mission">
+            <h2>Our Mission</h2>
+            <p>Our mission is to provide <span class="highlight">top-tier engineering education</span> that combines theoretical knowledge with practical skills. By leveraging cutting-edge technology and innovative teaching methods, we prepare our passengers to excel in their careers and make meaningful contributions to the world.</p>
+        </div>
+
+        <div class="section" id="tagline">
+            <h2>In a Nutshell</h2>
+            <p>We make <span class="highlight">new-age engineers from India</span>, ready for the world.</p>
+        </div>
+
+        <div class="section" id="team">
+            <h2>Our Team</h2>
+            <div class="image-placeholder">Adithya's Image</div>
+            <p>For now, it's just a one-person team. My name is Adithya, and this is what we are doing! I'm a passionate lifelong learner who understands the ecosystem through real-world experiences. This understanding drives our mission to bridge the gap between education and industry needs.</p>
+        </div>
+
+        <div class="section" id="problem">
+            <h2>The Problem We're Solving</h2>
+            <p>India produces an excess of engineers, leading to a mismatch between supply and demand. We're here to help those with the will to become employable in this competitive landscape.</p>
+        </div>
+
+        <div class="section" id="market">
+            <h2>Market Opportunity</h2>
+            <p>With around <span class="highlight">2 million students graduating every year</span>, we're positioned at the right place and time to address this challenge. A mindset shift is necessary, and we're working on immediate solutions while that evolves.</p>
+        </div>
+
+        <div class="section" id="business-model">
+            <h2>Business Model</h2>
+            <p>Our business model is straightforward: you pay to get access to our platform. We make it as simple as that for you, but we do have other nuances, which we'd be happy to discuss face-to-face.</p>
         </div>
     </div>
-    <button id="replayButton">Replay Animation</button>
 
     <script>
-        const messages = [
-            { sender: 'You', content: "Hey family! 👋 Got some exciting news to share! 🎉", time: "10:00 AM" },
-            { sender: 'Mom', content: "What is it, beta? 😊", time: "10:01 AM" },
-            { sender: 'You', content: "I'm starting a new company called SpaceShip! 🚀", time: "10:02 AM" },
-            { sender: 'Dad', content: "Wow! Tell us more about it!", time: "10:02 AM" },
-            { sender: 'You', content: "So, you know how there are too many engineering grads but not enough jobs?", time: "10:03 AM" },
-            { sender: 'Brother', content: "Yeah, my friend is facing the same problem 😕", time: "10:04 AM" },
-            { sender: 'You', content: "Exactly! SpaceShip is here to fix that! We're gonna help make engineers job-ready! 💼🔧", time: "10:05 AM" },
-            { sender: 'Mom', content: "That's wonderful, beta! But how will you do it? 🤔", time: "10:06 AM" },
-            { sender: 'You', content: "We're creating a super cool platform where engineering students can learn practical skills that companies actually want! 💻📚", time: "10:07 AM" },
-            { sender: 'Dad', content: "Sounds interesting! Is there a big market for this?", time: "10:08 AM" },
-            { sender: 'You', content: "Oh yeah! Check this out:", time: "10:09 AM" },
-            { sender: 'You', content: "• 20 lakh engineering grads every year 🎓\n• Only about 16% can get IT service jobs 😱\n• Just 3% fit for IT product jobs 😳\n• But 39% could do well in other tech roles! 💡", time: "10:10 AM" },
-            { sender: 'Brother', content: "Whoa, that's a lot of students who need help!", time: "10:11 AM" },
-            { sender: 'You', content: "Right?! That's where SpaceShip comes in! We're gonna help bridge that gap! 🌉", time: "10:12 AM" },
-            { sender: 'Mom', content: "So proud of you, beta! How will students use SpaceShip?", time: "10:13 AM" },
-            { sender: 'You', content: "It's super simple! They pay to join our platform, and we give them all the tools and skills they need to become awesome engineers! 🛠️🚀", time: "10:14 AM" },
-            { sender: 'Dad', content: "Sounds like a solid plan! When do you start?", time: "10:15 AM" },
-            { sender: 'You', content: "We're just getting started! I'll keep you all updated. Thanks for the support, family! ❤️", time: "10:16 AM" },
-            { sender: 'Mom', content: "We're all rooting for you! Go SpaceShip! 🚀🌟", time: "10:17 AM" }
-        ];
-
-        function createMessageElement(message) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${message.sender === 'You' ? 'sent' : 'received'}`;
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const sections = document.querySelectorAll('.section');
             
-            let messageContent = '';
-            if (message.sender !== 'You') {
-                messageContent += `<div class="sender">${message.sender}</div>`;
-            }
-            messageContent += `<p>${message.content}</p><div class="time">${message.time}</div>`;
-            
-            messageDiv.innerHTML = messageContent;
-            return messageDiv;
-        }
+            const animateSection = (section, delay) => {
+                anime({
+                    targets: section,
+                    opacity: 1,
+                    translateY: 0,
+                    duration: 800,
+                    easing: 'easeOutExpo',
+                    delay: delay
+                });
+            };
 
-        function animateMessages(startIndex = 0) {
-            const chatMessages = document.getElementById('chatMessages');
-            if (startIndex === 0) {
-                chatMessages.innerHTML = '';
-            }
-            
-            function showNextMessage(index) {
-                if (index < messages.length) {
-                    const messageElement = createMessageElement(messages[index]);
-                    chatMessages.appendChild(messageElement);
-                    setTimeout(() => {
-                        messageElement.classList.add('show');
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                        showNextMessage(index + 1);
-                    }, 1000); // Delay between messages
-                } else {
-                    document.getElementById('replayButton').style.display = 'block';
-                }
-            }
+            const observerCallback = (entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        animateSection(entry.target, 150);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
 
-            showNextMessage(startIndex);
-        }
+            const observer = new IntersectionObserver(observerCallback, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            });
 
-        // Start animation when the page loads
-        window.onload = () => animateMessages();
-
-        // Replay button functionality
-        document.getElementById('replayButton').addEventListener('click', () => {
-            document.getElementById('replayButton').style.display = 'none';
-            animateMessages();
+            sections.forEach((section) => {
+                observer.observe(section);
+            });
         });
     </script>
 </body>
